@@ -1,9 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/Image/Logo-name.png";
 import { FaBars } from "react-icons/fa";
-import user from "../assets/Image/user.png";
+import userIcon from "../assets/Image/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../Auth/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { logOut, user } = useContext(AuthContext);
+
   const navLink = (
     <>
       <li>
@@ -49,6 +54,15 @@ const Navbar = () => {
     </>
   );
 
+  const handleLogOut = () => {
+    logOut()
+      .then((res) => {
+        console.log(res);
+        toast.success("Log Out Successful");
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="lg:px-12 md:px-6 navbar bg-base-200 nav">
       <div className="container mx-auto">
@@ -73,52 +87,49 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center">
-          {/* <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src={user} />
-              </div>
-            </label>
-            <div
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <div className="w-10 rounded-full flex justify-center">
-                <img src={user} />
-              </div>
-              <li>
-                <Link>Login</Link>
-              </li>
-              <li>
-               
-              </li>
-            </div>
-          </div> */}
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user} />
+                {user ? (
+                  <img src={user?.photoURL} alt="" />
+                ) : (
+                  <img src={userIcon} alt="" />
+                )}
               </div>
             </label>
             <div
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-                <div className="flex flex-col items-center space-y-2">
-                  <div className="w-20 flex justify-center items-center">
-                    <img src={user} alt="" />
-                  </div>
-                  <p>Name: </p>
-                  <p>Email: </p>
+              <div className="flex flex-col items-center space-y-2 mb-5">
+                <div className="w-20 flex justify-center items-center">
+                  {user ? (
+                    <img
+                      src={user?.photoURL}
+                      alt=""
+                      className="w-20 rounded-full border"
+                    />
+                  ) : (
+                    <img src={userIcon} alt="" />
+                  )}
                 </div>
+                <p>Name: {user?.displayName}</p>
+                <p>{user?.email}</p>
+              </div>
 
-                <li>
+              <li>
+                {user ? (
+                  <button onClick={handleLogOut}>Log Out</button>
+                ) : (
                   <Link to={"/login"}>Login</Link>
-                </li>
-                <li>
-                  <Link to={"/Register"}>Register</Link>
-                </li>
-
+                )}
+              </li>
+              <li>
+                <Link to={"/Register"}>Register</Link>
+              </li>
+              <li>
+                <Link to={"/Register"}>Setting</Link>
+              </li>
             </div>
           </div>
         </div>

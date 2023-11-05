@@ -1,21 +1,24 @@
-
+import { useContext } from "react";
+import { AuthContext } from "../../Auth/AuthProvider";
+import toast from "react-hot-toast";
 
 const SocialLogIn = () => {
-  // const { socialLogin } = useContext(authContext);
+  const { googleLogin } = useContext(AuthContext);
 
-  // const handleGoogleLogin = () => {
-  //   socialLogin()
-  //     .then((result) => {
-  //       console.log(result);
-  //       toast.success("Successfully Log In!!");
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Log In!!");
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div className="grid space-y-4">
+      <button>logout</button>
       <button
-        // onClick={handleGoogleLogin}
+        onClick={handleGoogleLogin}
         className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
             hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
       >

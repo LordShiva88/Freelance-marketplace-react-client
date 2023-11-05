@@ -4,14 +4,13 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Auth/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const authInfo = useContext(AuthContext)
-
-
+  const {signUp} = useContext(AuthContext)
 
   const handleCreateUser = (e) => {
     e.preventDefault();
@@ -31,22 +30,20 @@ const Register = () => {
         "Password must contain at least one special character (@, $, !, %, *, ?, or &)"
       );
     }
-
-
-
-    // createUser(email, password)
-    //   .then((result) => {
-    //     console.log(result.user);
-    //     toast.success("Successfully Registered!");
-    //     updateProfile(result.user, {
-    //       displayName: name,
-    //       photoURL: imageUrl,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     const errorMessage = error.message;
-    //     toast.error(errorMessage);
-    //   });
+    
+    signUp(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Successfully Registered!");
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: imageUrl,
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
   };
 
   return (

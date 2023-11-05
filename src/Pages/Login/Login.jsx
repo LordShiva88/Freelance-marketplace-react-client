@@ -1,8 +1,9 @@
 import { Link} from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../Auth/AuthProvider";
 
 
 
@@ -10,7 +11,7 @@ import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  // const { loginUser } = useContext(authContext);
+  const { logIn } = useContext(AuthContext);
   // const location = useLocation();
   // const navigate = useNavigate();
 
@@ -21,17 +22,17 @@ const Login = () => {
     const password = form.password.value;
     console.log(name, email, password);
 
-    // loginUser(email, password)
-    //   .then((result) => {
-    //     console.log(result);
-    //     toast.success("Successfully Log In!!");
-    //     // Navigate After Login
-    //     navigate(location?.state ? location.state : "/");
-    //   })
-    //   .catch((error) => {
-    //     const errorMessage = error.message;
-    //     toast.error(errorMessage);
-    //   });
+    logIn(email, password)
+      .then((result) => {
+        console.log(result);
+        toast.success("Successfully Log In!!");
+        // Navigate After Login
+        // navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+      });
   };
 
   return (
@@ -109,7 +110,7 @@ const Login = () => {
           <SocialLogIn></SocialLogIn>
         </div>
       </form>
-      <Toaster />
+      
     </div>
   );
 };
