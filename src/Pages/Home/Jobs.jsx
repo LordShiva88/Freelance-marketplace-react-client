@@ -1,8 +1,7 @@
 import JobCard from "./JobCard";
+import PropTypes from 'prop-types';
 
-const Jobs = ({ jobs, loading }) => {
-  console.log(jobs);
-
+const Jobs = ({ jobs, loading} ) => {
   return (
     <div>
       {loading && (
@@ -14,6 +13,11 @@ const Jobs = ({ jobs, loading }) => {
       {jobs.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
     </div>
   );
+};
+
+Jobs.propTypes = {
+  jobs: PropTypes.array.isRequired, 
+  loading: PropTypes.bool,
 };
 
 export default Jobs;
