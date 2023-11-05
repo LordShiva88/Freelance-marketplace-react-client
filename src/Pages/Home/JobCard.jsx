@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const JobCard = ({ job }) => {
   const {
@@ -7,21 +7,13 @@ const JobCard = ({ job }) => {
     deadline,
     description,
     job_title,
-    job_type,
-    price_range,
+    maximum_price,
+    minimum_price,
     user_image,
     user_name,
-    _id
+    _id,
   } = job;
 
-  // https://ibb.co/Ksdknhk/user1.jpg
-// https://ibb.co/9yL8jzr/user2.jpg
-// https://ibb.co/VC8CCwL/user3.jpg
-// https://ibb.co/jRycByv/user4.jpg
-// https://ibb.co/7GNtnrZ/user4.jpg
-// https://ibb.co/Mg32gjZ/user5.jpg
-
-  
   return (
     <div className="m-5">
       <div className="group mx-2 mt-10 grid max-w-screen-md grid-cols-12 space-x-8 overflow-hidden rounded-lg border py-8 text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
@@ -37,8 +29,6 @@ const JobCard = ({ job }) => {
             />
           </div>
           <p>{user_name}</p>
-          
-          <button className="btn"><Link to={`/details/${_id}`}>Bid Now</Link></button>
         </a>
 
         <div className="col-span-11 flex flex-col pr-8 text-left sm:pl-4">
@@ -58,7 +48,7 @@ const JobCard = ({ job }) => {
               Price Range
               <span className="ml-2 mr-3 rounded-full bg-green-100 px-2 py-0.5 text-green-900">
                 {" "}
-                {price_range}{" "}
+                {minimum_price}$ - {maximum_price}${" "}
               </span>
             </div>
             <div className="">
@@ -68,9 +58,10 @@ const JobCard = ({ job }) => {
               </span>
             </div>
             <div className="">
-              Job_Types:
               <span className="ml-2 mr-3 rounded-full bg-red-100 px-2 py-0.5 text-blue-900">
-                {job_type}
+                <button className="">
+                  <Link to={`/details/${_id}`}>Bid Now</Link>
+                </button>
               </span>
             </div>
           </div>
@@ -81,7 +72,7 @@ const JobCard = ({ job }) => {
 };
 
 JobCard.propTypes = {
-  job: PropTypes.object.isRequired, 
+  job: PropTypes.object.isRequired,
 };
 
 export default JobCard;
