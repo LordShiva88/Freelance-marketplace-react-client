@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,25 @@ const AddJob = () => {
   const email = user.email;
   const user_image = user.photoURL;
   const user_name = user.displayName;
+
+  const navigate = useNavigate();
+
+
+  // Date Validation
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    let day = currentDate.getDate();
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return `${year}-${month}-${day}`;
+  };
+  const minDate = getCurrentDate();
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +55,8 @@ const AddJob = () => {
       .then(function (response) {
         console.log(response.data);
         if(response.data.insertedId){
-          toast.success('Successfully Post this Job!')
+          toast.success('Successfully Post this Job!');
+          navigate('/post')
         }
       })
       .catch(function (error) {
@@ -88,6 +109,7 @@ const AddJob = () => {
                 id="deadline"
                 name="deadline"
                 onChange={(e) => setDateline(e.target.value)}
+                min={minDate}
                 className="border p-2 rounded"
               />
             </div>

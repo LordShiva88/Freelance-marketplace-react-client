@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -11,6 +11,7 @@ const JobDetails = () => {
 
   const [bidPrice, setBidPrice] = useState("");
   const [date, setDate] = useState("");
+  const navigate = useNavigate();
 
   if (loading) {
     return;
@@ -23,6 +24,17 @@ const JobDetails = () => {
     email,
   } = job;
  
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    let day = currentDate.getDate();
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return `${year}-${month}-${day}`;
+  };
+  const minDate = getCurrentDate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +50,8 @@ const JobDetails = () => {
     .then(function (response) {
       console.log(response.data);
       if(response.data.insertedId){
-        toast.success('Your Bid Successful!')
+        toast.success('Your Bid Successful!');
+        navigate('/bids')
       }
     })
     .catch(function (error) {
@@ -84,6 +97,7 @@ const JobDetails = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="date"
               onChange={(e) => setDate(e.target.value)}
+              min={minDate}
               required
             />
           </div>

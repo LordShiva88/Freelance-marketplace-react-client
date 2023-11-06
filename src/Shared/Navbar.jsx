@@ -32,7 +32,7 @@ const Navbar = () => {
           to={`/post`}
           className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
         >
-          My Post
+          My Posted Job
         </NavLink>
       </li>
       <li>
