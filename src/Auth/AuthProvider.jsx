@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "./Firebase";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
 
   const googleProvider = new GoogleAuthProvider();
 
-  // Register the user 
+  // Register the user
   const signUp = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -27,28 +27,30 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logOut = ()=>{
-    return signOut(auth)
-  }
+  const logOut = () => {
+    return signOut(auth);
+  };
 
-  // Login In / register with google 
+  // Login In / register with google
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // Set User
-  useEffect(()=>{
-    const unSubscribe = onAuthStateChanged(auth, user=>{
-      setUser(user)
-      setLoading(false)
-    })
-    return () =>{
-      return unSubscribe()
-    }
-  }, [])
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return () => {
+      return unSubscribe();
+    };
+  }, []);
 
-
+  if (loading) {
+    return;
+  }
 
   const authInfo = {
     signUp,
@@ -56,15 +58,15 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     logOut,
     loading,
-    user
+    user,
   };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
-AuthProvider.propTypes ={
-  children: PropTypes.object
-}
+AuthProvider.propTypes = {
+  children: PropTypes.object,
+};
 
 export default AuthProvider;

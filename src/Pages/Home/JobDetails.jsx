@@ -1,36 +1,28 @@
 import { useContext, useState } from "react";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
-// import { data } from "autoprefixer";
+import toast from "react-hot-toast";
+
 
 const JobDetails = () => {
   const { user, loading } = useContext(AuthContext);
   const job = useLoaderData();
 
-  const [buyerEmail, setBuyerEmail] = useState("");
   const [bidPrice, setBidPrice] = useState("");
   const [date, setDate] = useState("");
 
   if (loading) {
     return;
   }
-  const userEmail = user.email;
+  const userEmail = user?.email;
 
   const {
-    category,
-    deadline,
     description,
     job_title,
-    job_type,
-    price_range,
-    user_image,
-    user_name,
-    _id,
-    email
+    email,
   } = job;
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,8 +31,19 @@ const JobDetails = () => {
       email,
       bidPrice,
       date,
+      job_title,
     };
-    
+
+    axios.post('http://localhost:4000/bids', bids)
+    .then(function (response) {
+      console.log(response.data);
+      if(response.data.insertedId){
+        toast.success('Your Bid Successful!')
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   return (
@@ -66,7 +69,6 @@ const JobDetails = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="price"
               type="number"
-              // value={}
               onChange={(e) => setBidPrice(e.target.value)}
               required
             />
@@ -106,7 +108,6 @@ const JobDetails = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="buyerEmail"
               type="email"
-              // value={'freelance@gmail.com'}
               value={email}
               readOnly
               required
@@ -115,7 +116,12 @@ const JobDetails = () => {
 
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className={
+              userEmail === email
+                ? "bg-green-500 text-white py-2 px-4 rounded cursor-not-allowed opacity-50 w-full"
+                : "bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            }
+            
           >
             Bid on the Project
           </button>

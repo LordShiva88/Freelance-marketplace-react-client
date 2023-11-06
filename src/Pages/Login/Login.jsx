@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
@@ -12,8 +12,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { logIn } = useContext(AuthContext);
-  // const location = useLocation();
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLoginUser = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ const Login = () => {
         console.log(result);
         toast.success("Successfully Log In!!");
         // Navigate After Login
-        // navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         const errorMessage = error.message;

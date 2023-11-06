@@ -7,8 +7,8 @@ import { AuthContext } from "../Auth/AuthProvider";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { logOut, user } = useContext(AuthContext);
-
+  const {user, logOut,  } = useContext(AuthContext);
+ 
   const navLink = (
     <>
       <li>
@@ -29,7 +29,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/post"
+          to={`/post`}
           className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
         >
           My Post
@@ -37,7 +37,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/bids"
+          to={`/bids`}
           className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
         >
           My Bids
