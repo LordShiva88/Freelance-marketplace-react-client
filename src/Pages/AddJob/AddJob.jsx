@@ -4,6 +4,7 @@ import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,6 @@ const AddJob = () => {
 
   const navigate = useNavigate();
 
-
   // Date Validation
   const getCurrentDate = () => {
     const currentDate = new Date();
@@ -33,9 +33,6 @@ const AddJob = () => {
     return `${year}-${month}-${day}`;
   };
   const minDate = getCurrentDate();
-
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,9 +51,9 @@ const AddJob = () => {
       .post("http://localhost:4000/jobs", job)
       .then(function (response) {
         console.log(response.data);
-        if(response.data.insertedId){
-          toast.success('Successfully Post this Job!');
-          navigate('/post')
+        if (response.data.insertedId) {
+          toast.success("Successfully Post this Job!");
+          navigate("/post");
         }
       })
       .catch(function (error) {
@@ -65,20 +62,31 @@ const AddJob = () => {
   };
 
   return (
-    <section className="bg-gray-100 flex justify-center items-center">
+    <section className="bg-gray-100  items-center">
       <Helmet>
         <title>Freelance BD || Add job</title>
       </Helmet>
-      <div className="bg-white p-8 rounded shadow-md w-full md:w-1/2">
-        <h1 className="text-3xl font-semibold mb-6 text-green-500 text-center">
-          Add a Job
-        </h1>
+      <div className="relative bg-blue-500 mb-8 overflow-hidden group">
+        <PageBanner />
+        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
+            Welcome to My Bids Page!
+          </h1>
+          <p className="text-lg md:text-xl mb-4">
+            Check your active bids, update statuses, and manage your projects
+            here.
+          </p>
+          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Request</p>
+          <button className="bg-[#eb347a] text-white py-2 px-6 rounded-lg hover:bg-[#ff66a1] transition duration-300 ease-in-out">
+            Explore Bids
+          </button>
+        </div>
+      </div>
+      <div className="bg-white p-8 rounded shadow-md w-full md:w-1/2 my-20 mx-auto">
         <form onSubmit={handleSubmit} id="addJobForm" className="space-y-4">
           <div className="flex gap-5 md:flex-row flex-col">
             <div className="flex flex-col w-full">
-              <label className="text-gray-600 mb-2 font-semibold">
-                Email of the employer
-              </label>
+              <label className="text-gray-600 mb-2 font-semibold">Email</label>
               <input
                 type="text"
                 defaultValue={email}
@@ -168,9 +176,9 @@ const AddJob = () => {
           </div>
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded font-semibold w-full"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300 w-full"
           >
-            Add Job
+            Post Job
           </button>
         </form>
       </div>

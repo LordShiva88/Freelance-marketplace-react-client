@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { useState } from "react";
+import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 
 const MyPost = () => {
   
@@ -18,12 +19,26 @@ const MyPost = () => {
 
 
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Helmet>
         <title>Freelance BD || Add Post</title>
       </Helmet>
-      <h1>My Post</h1>
-      <div className="grid md:grid-cols-2 gap-5 my-20 grid-cols-1">
+      <div className="relative bg-blue-500 mb-8 overflow-hidden group">
+        <PageBanner></PageBanner>
+        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
+            My Posted Jobs
+          </h1>
+          <p className="text-lg md:text-xl mb-4">
+            Here Is Your Total Posted Jobs, you can edit and delete post!!
+          </p>
+          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Posted Jobs</p>
+          <button className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out">
+            Explore More
+          </button>
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-5 my-20 grid-cols-1 container mx-auto ">
         {posts.map((post) => (
           <PostDetails post={post} key={post._id}></PostDetails>
         ))}

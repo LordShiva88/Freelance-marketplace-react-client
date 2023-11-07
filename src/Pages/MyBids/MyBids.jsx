@@ -1,11 +1,15 @@
 import { Helmet } from "react-helmet";
 import BidDetails from "./BidDetails";
+import empty from '../../assets/Image/empty.png'
 import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Table from "../../Components/Table";
+import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
+import { Link } from "react-router-dom";
 
 const MyBids = () => {
   const [bids, setBids] = useState([]);
@@ -40,46 +44,51 @@ const MyBids = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
-    <Helmet>
-      <title>Freelance BD || My Bids </title>
-    </Helmet>
-    <h1 className="text-4xl font-bold text-center mb-8 text-blue-600">
-      My Bids
-    </h1>
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-white border border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
-        <thead className="bg-blue-50 dark:bg-blue-800">
-          <tr>
-            <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase">
-              Job Title
-            </th>
-            <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase">
-              Email Client
-            </th>
-            <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase">
-              Deadline
-            </th>
-            <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase">
-              Status
-            </th>
-            <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700 uppercase">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-          {bids.map((bid) => (
-            <BidDetails
-              bid={bid}
-              handleComplete={handleComplete}
-              key={bid._id}
-            />
-          ))}
-        </tbody>
-      </table>
+    <div className="">
+      <Helmet>
+        <title>Freelance BD || My Bids </title>
+      </Helmet>
+      <div className="relative bg-blue-500 mb-8 overflow-hidden group">
+        <PageBanner />
+        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
+            Your Total Bids From other posted job!
+          </h1>
+          <p className="text-lg md:text-xl mb-4">
+            Check your active bids, update statuses, and manage your projects
+            here.
+          </p>
+          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Request</p>
+          <button className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out">
+            Explore More
+          </button>
+        </div>
+      </div>
+      {bids.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-full py-10">
+          <img src={empty} alt="No jobs available illustration" className="mb-6" />
+          <p className="text-gray-600 text-lg mb-4">
+            Oops! It looks like there are no job positions available at the moment.
+          </p>
+          <Link to={'/'} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300">
+            Explore Jobs
+          </Link>
+        </div>
+      ) : (
+        <div className="overflow-x-auto container mx-auto my-20">
+          <table className="min-w-full bg-white border border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-blue-50 dark:bg-blue-800">
+              <Table />
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              {bids.map((bid) => (
+                <BidDetails bid={bid} handleComplete={handleComplete} key={bid._id} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
-  </div>
   );
 };
 

@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Jobs from "./Jobs";
 import Success from "../../Components/SocialLogin/Success";
+import Faq from "../../Components/Faq";
+import Testimonials from "../../Components/Testimonials";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -83,10 +85,15 @@ const Home = () => {
         </TabPanel>
       </Tabs>
 
-<div className="flex justify-center my-10">
-<Success></Success>
-</div>
-      
+      <div className="flex justify-center my-10">
+        <Success></Success>
+      </div>
+      <div className="flex justify-center my-10">
+        <Faq></Faq>
+      </div>
+      <div className="flex justify-center my-10">
+    <Testimonials></Testimonials>
+      </div>
     </div>
   );
 };
