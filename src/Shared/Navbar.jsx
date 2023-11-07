@@ -7,51 +7,51 @@ import { AuthContext } from "../Auth/AuthProvider";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const {user, logOut,  } = useContext(AuthContext);
- 
+  const { user, logOut } = useContext(AuthContext);
+
   const navLink = (
     <>
       <li>
-    <NavLink
-      to="/"
-      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
-    >
-      Home
-    </NavLink>
-  </li>
-  <li>
-    <NavLink
-      to="/addJob"
-      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
-    >
-      Add Job
-    </NavLink>
-  </li>
-  <li>
-    <NavLink
-      to="/post"
-      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
-    >
-      My Posted Job
-    </NavLink>
-  </li>
-  <li>
-    <NavLink
-      to="/bids"
-      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
-    >
-      My Bids
-    </NavLink>
-  </li>
-  <li>
-    <NavLink
-      to="/request"
-      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
-    >
-      My Request
-    </NavLink>
-  </li>
-  </>
+        <NavLink
+          to="/"
+          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/addJob"
+          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+        >
+          Add Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/post"
+          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+        >
+          My Posted Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/bids"
+          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+        >
+          My Bids
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/request"
+          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+        >
+          My Request
+        </NavLink>
+      </li>
+    </>
   );
 
   const handleLogOut = () => {
@@ -139,4 +139,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

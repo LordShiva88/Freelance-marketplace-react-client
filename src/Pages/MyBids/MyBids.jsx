@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import BidDetails from "./BidDetails";
-import empty from '../../assets/Image/empty.png'
+import empty from "../../assets/Image/empty.png";
 import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -66,11 +66,19 @@ const MyBids = () => {
       </div>
       {bids.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full py-10">
-          <img src={empty} alt="No jobs available illustration" className="mb-6" />
+          <img
+            src={empty}
+            alt="No jobs available illustration"
+            className="mb-6"
+          />
           <p className="text-gray-600 text-lg mb-4">
-            Oops! It looks like there are no job positions available at the moment.
+            Oops! It looks like there are no job positions available at the
+            moment.
           </p>
-          <Link to={'/'} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300">
+          <Link
+            to={"/"}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300"
+          >
             Explore Jobs
           </Link>
         </div>
@@ -82,7 +90,11 @@ const MyBids = () => {
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {bids.map((bid) => (
-                <BidDetails bid={bid} handleComplete={handleComplete} key={bid._id} />
+                <BidDetails
+                  bid={bid}
+                  handleComplete={handleComplete}
+                  key={bid._id}
+                />
               ))}
             </tbody>
           </table>

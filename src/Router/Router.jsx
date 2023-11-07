@@ -24,27 +24,35 @@ const Router = createBrowserRouter([
       },
       {
         path: "/addJob",
-        element: <PrivateRoute>
-          <AddJob></AddJob>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/post",
-        element: <PrivateRoute>
-          <MyPost></MyPost>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyPost></MyPost>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/bids",
-        element: <PrivateRoute>
-           <MyBids></MyBids>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyBids></MyBids>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/request",
-        element: <PrivateRoute>
-          <MyRequest></MyRequest>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyRequest></MyRequest>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -56,18 +64,20 @@ const Router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <PrivateRoute>
-          <JobDetails></JobDetails>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JobDetails></JobDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:4000/jobs/${params.id}`),
       },
       {
-        path: 'update/:id',
+        path: "update/:id",
         element: <Update></Update>,
         loader: ({ params }) =>
           fetch(`http://localhost:4000/jobs/${params.id}`),
-      }
+      },
     ],
   },
 ]);

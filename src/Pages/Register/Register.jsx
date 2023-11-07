@@ -6,11 +6,10 @@ import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
-
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const {signUp} = useContext(AuthContext)
+  const { signUp } = useContext(AuthContext);
 
   const handleCreateUser = (e) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ const Register = () => {
         "Password must contain at least one special character (@, $, !, %, *, ?, or &)"
       );
     }
-    
+
     signUp(email, password)
       .then((result) => {
         console.log(result.user);
@@ -153,7 +152,7 @@ const Register = () => {
           <SocialLogIn></SocialLogIn>
         </div>
       </form>
-   </div>
+    </div>
   );
 };
 

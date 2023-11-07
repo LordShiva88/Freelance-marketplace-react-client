@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import Table from "../../Components/Table";
-import empty from '../../assets/Image/empty.png'
+import empty from "../../assets/Image/empty.png";
 import { Link } from "react-router-dom";
 
 const MyRequest = () => {
@@ -89,43 +89,48 @@ const MyRequest = () => {
 
       {bids.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full py-10">
-          <img src={empty} alt="No jobs available illustration" className="mb-6" />
+          <img
+            src={empty}
+            alt="No jobs available illustration"
+            className="mb-6"
+          />
           <p className="text-gray-600 text-lg mb-4">
             Oops! It looks like there are no one bids till now.
           </p>
-          <Link to={'/addJob'} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300">
+          <Link
+            to={"/addJob"}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300"
+          >
             Add New Job
           </Link>
         </div>
       ) : (
-
-      <div className="flex flex-col my-20 container mx-auto">
-        <div className="-m-1.5 overflow-x-auto">
-          <div className="p-1.5 min-w-full inline-block align-middle">
-            <div className="overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead>
-                  <Table></Table>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {bids.map((bid) => (
-                    <MyRequestDetails
-                      handleAccept={handleAccept}
-                      bid={bid}
-                      key={bid._id}
-                      // state={state}
-                      handleReject={handleReject}
-                    ></MyRequestDetails>
-                  ))}
-                </tbody>
-              </table>
+        <div className="flex flex-col my-20 container mx-auto">
+          <div className="-m-1.5 overflow-x-auto">
+            <div className="p-1.5 min-w-full inline-block align-middle">
+              <div className="overflow-hidden">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                  <thead>
+                    <Table></Table>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {bids.map((bid) => (
+                      <MyRequestDetails
+                        handleAccept={handleAccept}
+                        bid={bid}
+                        key={bid._id}
+                        // state={state}
+                        handleReject={handleReject}
+                      ></MyRequestDetails>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       )}
     </div>
-      
   );
 };
 

@@ -92,7 +92,7 @@ const Home = () => {
         <Faq></Faq>
       </div>
       <div className="flex justify-center my-10">
-    <Testimonials></Testimonials>
+        <Testimonials></Testimonials>
       </div>
     </div>
   );

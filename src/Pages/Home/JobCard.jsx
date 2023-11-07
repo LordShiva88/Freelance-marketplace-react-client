@@ -20,9 +20,7 @@ const JobCard = ({ job }) => {
         <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">
           {job_title}
         </h3>
-        <p className="text-sm text-gray-600 mb-4">
-          {description}
-        </p>
+        <p className="text-sm text-gray-600 mb-4">{description}</p>
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
             <span className="mr-2 text-gray-700 font-semibold">

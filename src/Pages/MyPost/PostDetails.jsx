@@ -24,10 +24,10 @@ const PostDetails = ({ post, posts, setPosts }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-         axios.delete(`http://localhost:4000/jobs/${id}`);
+        axios.delete(`http://localhost:4000/jobs/${id}`);
 
-        const remaining = posts.filter(post => post._id !== id)
-        setPosts(remaining)
+        const remaining = posts.filter((post) => post._id !== id);
+        setPosts(remaining);
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -87,6 +87,6 @@ const PostDetails = ({ post, posts, setPosts }) => {
 PostDetails.propTypes = {
   post: PropTypes.object,
   posts: PropTypes.array,
-  setPosts: PropTypes.func
+  setPosts: PropTypes.func,
 };
 export default PostDetails;

@@ -56,7 +56,6 @@ const JobDetails = () => {
     axios
       .post("http://localhost:4000/bids", bids)
       .then(function (response) {
-        console.log(response.data);
         if (response.data.insertedId) {
           toast.success("Your Bid Successful!");
           navigate("/bids");
@@ -107,7 +106,7 @@ const JobDetails = () => {
           </div>
           <div className="flex items-center mt-4">
             <img
-              src={user_image }
+              src={user_image}
               alt=""
               className="w-10 h-10 rounded-full mr-3"
             />
@@ -115,10 +114,9 @@ const JobDetails = () => {
           </div>
         </div>
 
-
         <form
           onSubmit={handleSubmit}
-          className=" p-6 rounded-lg shadow-lg bg-white"
+          className="p-6 rounded-lg shadow-lg bg-white"
         >
           <div className="mb-4">
             <label className="block text-gray-600 text-sm font-semibold mb-2">
@@ -157,7 +155,7 @@ const JobDetails = () => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-600 text-sm font-semibold mb-2">
-              Buyer's Email:
+              Buyers Email:
             </label>
             <input
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"

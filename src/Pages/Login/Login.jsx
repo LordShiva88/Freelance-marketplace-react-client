@@ -1,12 +1,9 @@
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useContext, useState } from "react";
 import SocialLogIn from "../../Components/SocialLogin/SocialLogin";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Auth/AuthProvider";
-
-
-
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -110,7 +107,6 @@ const Login = () => {
           <SocialLogIn></SocialLogIn>
         </div>
       </form>
-      
     </div>
   );
 };

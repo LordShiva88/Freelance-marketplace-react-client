@@ -13,57 +13,50 @@ const Footer = () => {
           </p>
         </div>
 
-          <div className="">
-            <h2 className="text-lg font-semibold mb-2 text-gray-400">
-              Address
-            </h2>
-            <p>1234 Elm Street, Springfield, IL 62701, USA</p>
-            <p>Email: example@example.com</p>
-            <p>Phone: +1 (123) 456-7890</p>
-          </div>
+        <div className="">
+          <h2 className="text-lg font-semibold mb-2 text-gray-400">Address</h2>
+          <p>1234 Elm Street, Springfield, IL 62701, USA</p>
+          <p>Email: example@example.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+        </div>
 
-          {/* Services */}
-          <div className="">
-            <h2 className="text-lg font-semibold mb-2 text-gray-400">
-              Services
-            </h2>
-            <ul className="list-disc list-inside">
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                Web Design
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                Digital Marketing
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                Graphic Design
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300">
-                Advertisement
-              </li>
-            </ul>
-          </div>
+        {/* Services */}
+        <div className="">
+          <h2 className="text-lg font-semibold mb-2 text-gray-400">Services</h2>
+          <ul className="list-disc list-inside">
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              Web Design
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              Digital Marketing
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              Graphic Design
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300">
+              Advertisement
+            </li>
+          </ul>
+        </div>
 
-          {/* Company */}
-          <div className="w-full">
-            <h2 className="text-lg font-semibold mb-2 text-gray-400">
-              Company
-            </h2>
-            <ul className="list-disc list-inside">
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                About us
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                Contact
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
-                Jobs
-              </li>
-              <li className="text-white hover:text-blue-500 transition duration-300">
-                Press kit
-              </li>
-            </ul>
-          </div>
-
+        {/* Company */}
+        <div className="w-full">
+          <h2 className="text-lg font-semibold mb-2 text-gray-400">Company</h2>
+          <ul className="list-disc list-inside">
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              About us
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              Contact
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300 mb-2">
+              Jobs
+            </li>
+            <li className="text-white hover:text-blue-500 transition duration-300">
+              Press kit
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="bg-gray-700 text-gray-300 ">
         <div className="flex items-center justify-center gap-5 p-4 container mx-auto">

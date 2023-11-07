@@ -3,22 +3,20 @@ import PostDetails from "./PostDetails";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
-import empty from '../../assets/Image/empty.png'
+import empty from "../../assets/Image/empty.png";
 import { useState } from "react";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import { Link } from "react-router-dom";
 
 const MyPost = () => {
-  
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:4000/jobs?email=${user?.email}`)
-    .then(res => res.json())
-    .then(data => setPosts(data))
-  },[user?.email])
-
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, [user?.email]);
 
   return (
     <div className="">
@@ -34,7 +32,9 @@ const MyPost = () => {
           <p className="text-lg md:text-xl mb-4">
             Here Is Your Total Posted Jobs, you can edit and delete post!!
           </p>
-          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Posted Jobs</p>
+          <p className="text-lg md:text-xl mb-8">
+            Home &gt;&gt; My Posted Jobs
+          </p>
           <button className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out">
             Explore More
           </button>
@@ -42,23 +42,33 @@ const MyPost = () => {
       </div>
       {posts.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full py-10">
-          <img src={empty} alt="No jobs available illustration" className="mb-6" />
+          <img
+            src={empty}
+            alt="No jobs available illustration"
+            className="mb-6"
+          />
           <p className="text-gray-600 text-lg mb-4">
-            Oops! It looks like there are no job positions available at the moment.
+            Oops! It looks like there are no job positions available at the
+            moment.
           </p>
-          <Link to={'/'} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300">
+          <Link
+            to={"/"}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300"
+          >
             Explore Jobs
           </Link>
         </div>
-      ): (
-      <div className="grid md:grid-cols-2 gap-5 my-20 grid-cols-1 container mx-auto ">
-        {posts.map((post) => (
-          <PostDetails
-          setPosts={setPosts}
-          posts={posts}
-           post={post} key={post._id}></PostDetails>
-        ))}
-      </div>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-5 my-20 grid-cols-1 container mx-auto ">
+          {posts.map((post) => (
+            <PostDetails
+              setPosts={setPosts}
+              posts={posts}
+              post={post}
+              key={post._id}
+            ></PostDetails>
+          ))}
+        </div>
       )}
     </div>
   );

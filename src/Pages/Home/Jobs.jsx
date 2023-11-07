@@ -1,7 +1,7 @@
 import JobCard from "./JobCard";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const Jobs = ({ jobs, loading} ) => {
+const Jobs = ({ jobs, loading }) => {
   return (
     <div className="grid lg:grid-cols-2 lg:gap-5 container mx-auto">
       {loading && (
@@ -10,13 +10,15 @@ const Jobs = ({ jobs, loading} ) => {
         </div>
       )}
 
-      {jobs.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+      {jobs.map((job) => (
+        <JobCard key={job._id} job={job}></JobCard>
+      ))}
     </div>
   );
 };
 
 Jobs.propTypes = {
-  jobs: PropTypes.array.isRequired, 
+  jobs: PropTypes.array.isRequired,
   loading: PropTypes.bool,
 };
 
