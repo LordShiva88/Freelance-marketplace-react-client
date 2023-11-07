@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Jobs from "./Jobs";
+import Success from "../../Components/SocialLogin/Success";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -81,6 +82,11 @@ const Home = () => {
           <Jobs jobs={jobs}></Jobs>
         </TabPanel>
       </Tabs>
+
+<div className="flex justify-center my-10">
+<Success></Success>
+</div>
+      
     </div>
   );
 };
