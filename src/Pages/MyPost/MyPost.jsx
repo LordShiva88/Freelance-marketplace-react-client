@@ -3,8 +3,10 @@ import PostDetails from "./PostDetails";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
+import empty from '../../assets/Image/empty.png'
 import { useState } from "react";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
+import { Link } from "react-router-dom";
 
 const MyPost = () => {
   
@@ -38,11 +40,26 @@ const MyPost = () => {
           </button>
         </div>
       </div>
+      {posts.length === 0 ? (
+        <div className="flex flex-col items-center justify-center h-full py-10">
+          <img src={empty} alt="No jobs available illustration" className="mb-6" />
+          <p className="text-gray-600 text-lg mb-4">
+            Oops! It looks like there are no job positions available at the moment.
+          </p>
+          <Link to={'/'} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full focus:outline-none transition duration-300">
+            Explore Jobs
+          </Link>
+        </div>
+      ): (
       <div className="grid md:grid-cols-2 gap-5 my-20 grid-cols-1 container mx-auto ">
         {posts.map((post) => (
-          <PostDetails post={post} key={post._id}></PostDetails>
+          <PostDetails
+          setPosts={setPosts}
+          posts={posts}
+           post={post} key={post._id}></PostDetails>
         ))}
       </div>
+      )}
     </div>
   );
 };

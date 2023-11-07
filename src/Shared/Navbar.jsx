@@ -12,46 +12,46 @@ const Navbar = () => {
   const navLink = (
     <>
       <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/addJob"
-          className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
-        >
-          Add Job
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={`/post`}
-          className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
-        >
-          My Posted Job
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={`/bids`}
-          className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
-        >
-          My Bids
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/request"
-          className={({ isActive }) => (isActive ? "text-[#eb347a]" : "")}
-        >
-          My Request
-        </NavLink>
-      </li>
-    </>
+    <NavLink
+      to="/"
+      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+    >
+      Home
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/addJob"
+      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+    >
+      Add Job
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/post"
+      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+    >
+      My Posted Job
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/bids"
+      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+    >
+      My Bids
+    </NavLink>
+  </li>
+  <li>
+    <NavLink
+      to="/request"
+      className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+    >
+      My Request
+    </NavLink>
+  </li>
+  </>
   );
 
   const handleLogOut = () => {

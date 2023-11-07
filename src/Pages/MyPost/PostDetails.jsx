@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
-const PostDetails = ({ post }) => {
+const PostDetails = ({ post, posts, setPosts }) => {
   const {
     category,
     deadline,
@@ -24,9 +24,10 @@ const PostDetails = ({ post }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        const response = axios.delete(`http://localhost:4000/jobs/${id}`);
-        console.log(response.data);
+         axios.delete(`http://localhost:4000/jobs/${id}`);
 
+        const remaining = posts.filter(post => post._id !== id)
+        setPosts(remaining)
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -85,5 +86,7 @@ const PostDetails = ({ post }) => {
 
 PostDetails.propTypes = {
   post: PropTypes.object,
+  posts: PropTypes.array,
+  setPosts: PropTypes.func
 };
 export default PostDetails;

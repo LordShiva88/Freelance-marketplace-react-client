@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Auth/AuthProvider";
 import axios from "axios";
@@ -6,19 +6,19 @@ import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const Update = () => {
-  const {user} = useContext(AuthContext)
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [job_title, setJobTitle] = useState("");
-  const [maximum_price, setMax] = useState("");
-  const [minimum_price, setMin] = useState("");
-  const [deadline, setDateline] = useState("");
-
+  const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const id = data._id;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const category = e.target.category.value;
+    const deadline = e.target.deadline.value;
+    const description = e.target.description.value;
+    const job_title = e.target.jobTitle.value;
+    const maximum_price = e.target.minPrice.value;
+    const minimum_price = e.target.maxPrice.value;
+
     const job = {
       category,
       deadline,
@@ -26,15 +26,15 @@ const Update = () => {
       job_title,
       maximum_price,
       minimum_price,
-      id
+      id,
     };
     console.log(job);
 
     axios
       .put(`http://localhost:4000/jobs/${id}`, job)
       .then(function (response) {
-        if(response.data.modifiedCount > 0){
-          toast.success('Updated Successful')
+        if (response.data.modifiedCount > 0) {
+          toast.success("Updated Successful");
         }
       })
       .catch(function (error) {
@@ -59,6 +59,7 @@ const Update = () => {
               </label>
               <input
                 type="text"
+                name="email"
                 defaultValue={user?.email}
                 readOnly
                 className="border p-2 rounded"
@@ -73,7 +74,6 @@ const Update = () => {
                 id="jobTitle"
                 name="jobTitle"
                 defaultValue={data.job_title}
-                onChange={(e) => setJobTitle(e.target.value)}
                 className="border p-2 rounded"
               />
             </div>
@@ -88,7 +88,6 @@ const Update = () => {
                 id="deadline"
                 defaultValue={data.deadline}
                 name="deadline"
-                onChange={(e) => setDateline(e.target.value)}
                 className="border p-2 rounded"
               />
             </div>
@@ -100,7 +99,6 @@ const Update = () => {
                 id="category"
                 name="category"
                 defaultValue={data.category}
-                onChange={(e) => setCategory(e.target.value)}
                 className="border p-2 rounded"
               >
                 <option value="Web_Design">Web_Design</option>
@@ -119,7 +117,6 @@ const Update = () => {
               id="minPrice"
               name="minPrice"
               defaultValue={data.minimum_price}
-              onChange={(e) => setMin(e.target.value)}
               className="border p-2 rounded"
             />
           </div>
@@ -132,7 +129,6 @@ const Update = () => {
               id="maxPrice"
               name="maxPrice"
               defaultValue={data.maximum_price}
-              onChange={(e) => setMax(e.target.value)}
               className="border p-2 rounded"
             />
           </div>
@@ -145,7 +141,6 @@ const Update = () => {
               name="description"
               rows="4"
               defaultValue={data.description}
-              onChange={(e) => setDescription(e.target.value)}
               className="border p-2 rounded"
             ></textarea>
           </div>
