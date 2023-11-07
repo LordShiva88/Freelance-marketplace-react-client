@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const MyRequest = () => {
   const [bids, setBids] = useState([]);
+  // const [state, setState] = useState('Pending')
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -15,8 +18,51 @@ const MyRequest = () => {
       .then((data) => setBids(data));
   }, [user?.email]);
 
+  const handleAccept = (id)=>{
+    const status = {
+      status: 'In Progress'
+    }
+    axios
+      .put(`http://localhost:4000/bids/${id}`, status)
+      .then(function (response) {
+        console.log(response.data)
+        if(response.data.modifiedCount > 0){
+          toast.success('Accepted Successful')
+          const remaining = bids.filter(bid => bid._id !== id);
+          const update = bids.find(bid => bid._id === id)
+          update.status = 'In Progress'
+          const newBids = [update, ...remaining]
+          setBids(newBids)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  const handleReject = (id)=>{
+    const status = {
+      status: 'Canceled'
+    }
+    axios
+      .put(`http://localhost:4000/bids/${id}`, status)
+      .then(function (response) {
+        console.log(response.data)
+        if(response.data.modifiedCount > 0){
+          toast.error('Canceled')
+          const remaining = bids.filter(bid => bid._id !== id);
+          const update = bids.find(bid => bid._id === id)
+          update.status = 'Canceled'
+          const newBids = [update, ...remaining]
+          setBids(newBids)
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
-    <div>
+    <div className="container mx-auto">
       <Helmet>
         <title>Freelance BD || My Request</title>
       </Helmet>
@@ -38,7 +84,7 @@ const MyRequest = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
                     >
-                      Email Client
+                      Email Freelancer
                     </th>
                     <th
                       scope="col"
@@ -63,8 +109,11 @@ const MyRequest = () => {
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                   {bids.map((bid) => (
                     <MyRequestDetails
+                    handleAccept={handleAccept}
                       bid={bid}
                       key={bid._id}
+                      // state={state}
+                      handleReject={handleReject}
                     ></MyRequestDetails>
                   ))}
                 </tbody>

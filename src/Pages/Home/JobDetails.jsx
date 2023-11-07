@@ -44,6 +44,7 @@ const JobDetails = () => {
       bidPrice,
       date,
       job_title,
+      status: 'pending'
     };
 
     axios.post('http://localhost:4000/bids', bids)

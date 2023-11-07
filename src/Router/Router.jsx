@@ -10,11 +10,13 @@ import Register from "../Pages/Register/Register";
 import JobDetails from "../Pages/Home/JobDetails";
 import Update from "../Pages/Update/Update";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../Pages/Error/Error";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",

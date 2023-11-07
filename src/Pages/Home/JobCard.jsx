@@ -15,7 +15,7 @@ const JobCard = ({ job }) => {
   } = job;
 
   return (
-    <div className="m-5">
+    <div className="">
       <div className="group mx-2 mt-10 grid max-w-screen-md grid-cols-12 space-x-8 overflow-hidden rounded-lg border py-8 text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
         <a
           href="#"
@@ -40,7 +40,7 @@ const JobCard = ({ job }) => {
             {job_title}
           </a>
           <p className="overflow-hidden pr-7 text-sm">
-            {description.slice(0, 150)}...
+            {description?.slice(0, 150)}...
           </p>
 
           <div className="mt-5 flex flex-col space-y-3 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-2">
