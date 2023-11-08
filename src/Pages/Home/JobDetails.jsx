@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Auth/AuthProvider";
-import axios from "axios";
 import toast from "react-hot-toast";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import { Helmet } from "react-helmet";
+import useAxios from "../../Hooks/useAxios";
 
 const JobDetails = () => {
+  const axios = useAxios()
   const { user, loading } = useContext(AuthContext);
   const job = useLoaderData();
 
@@ -54,7 +55,7 @@ const JobDetails = () => {
     };
 
     axios
-      .post("https://freelance-marketplace-server.vercel.app/bids", bids)
+      .post("/bids", bids)
       .then(function (response) {
         if (response.data.insertedId) {
           toast.success("Your Bid Successful!");

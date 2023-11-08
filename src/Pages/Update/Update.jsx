@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Auth/AuthProvider";
-import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import toast from "react-hot-toast";
+import useAxios from "../../Hooks/useAxios";
 
 const Update = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
+  const axios = useAxios()
   const id = data._id;
 
   const handleSubmit = (e) => {
@@ -31,7 +32,7 @@ const Update = () => {
     console.log(job);
 
     axios
-      .put(`https://freelance-marketplace-server.vercel.app/jobs/${id}`, job)
+      .put(`/jobs/${id}`, job)
       .then(function (response) {
         if (response.data.modifiedCount > 0) {
           toast.success("Updated Successful");

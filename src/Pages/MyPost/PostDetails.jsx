@@ -1,8 +1,10 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
+import useAxios from "../../Hooks/useAxios";
 const PostDetails = ({ post, posts, setPosts }) => {
+  const axios = useAxios();
+
   const {
     category,
     deadline,
@@ -24,7 +26,9 @@ const PostDetails = ({ post, posts, setPosts }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://freelance-marketplace-server.vercel.app/jobs/${id}`);
+        axios.delete(
+          `/jobs/${id}`
+        );
 
         const remaining = posts.filter((post) => post._id !== id);
         setPosts(remaining);

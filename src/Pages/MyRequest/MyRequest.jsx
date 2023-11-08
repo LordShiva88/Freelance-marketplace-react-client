@@ -4,36 +4,35 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
-import axios from "axios";
 import toast from "react-hot-toast";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import Table from "../../Components/Table";
 import empty from "../../assets/Image/empty.png";
 import { Link } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const MyRequest = () => {
   const [bids, setBids] = useState([]);
   // const [state, setState] = useState('Pending')
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios()
 
   useEffect(() => {
-    fetch(
-      `https://freelance-marketplace-server.vercel.app/bids/request?email=${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setBids(data);
-        setLoading(false);
-      });
-  }, [user?.email]);
+    const fetchData = async() =>{
+      const res  = await axios.get(`/bids/request?email=${user?.email}`);
+      setBids(res.data);
+      setLoading(false);
+    }
+    fetchData()
+  }, [user?.email, axios]);
 
   const handleAccept = (id) => {
     const status = {
       status: "In Progress",
     };
     axios
-      .put(`https://freelance-marketplace-server.vercel.app/bids/${id}`, status)
+      .put(`/bids/${id}`, status)
       .then(function (response) {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {
@@ -54,7 +53,7 @@ const MyRequest = () => {
       status: "Canceled",
     };
     axios
-      .put(`https://freelance-marketplace-server.vercel.app/bids/${id}`, status)
+      .put(`/bids/${id}`, status)
       .then(function (response) {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {

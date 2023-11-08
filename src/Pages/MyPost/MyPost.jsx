@@ -7,22 +7,23 @@ import empty from "../../assets/Image/empty.png";
 import { useState } from "react";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import { Link } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const MyPost = () => {
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch(
-      `https://freelance-marketplace-server.vercel.app/jobs?email=${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      });
-  }, [user?.email]);
+    const fetchData = async() =>{
+      const res  = await axios.get(`/jobs?email=${user?.email}`);
+      setPosts(res.data);
+      setLoading(false);
+    }
+    fetchData()
+  }, [user?.email, axios]);
+
 
   if (loading) {
     return (

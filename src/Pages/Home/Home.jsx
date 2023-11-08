@@ -1,5 +1,3 @@
-import axios from "../../Hooks/Axios";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
@@ -8,29 +6,27 @@ import Faq from "../../Components/Faq";
 import Testimonials from "../../Components/Testimonials";
 import HomeBanner from "../../Components/Home/HomeBanner";
 import WhyUs from "../../Components/Home/WhyUs";
+import useAxios from "../../Hooks/useAxios";
+import { useEffect } from "react";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios();
 
   const handleGetData = async (category) => {
-    try {
-      const res = await axios.get(
-        `https://freelance-marketplace-server.vercel.app/jobs?category=${
-          category || ""
-        }`,
-        { withCredentials: true }
-      );
-      setJobs(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    const res = await axios.get(`/jobs?category=${category || ""}`, {
+      withCredentials: true,
+    });
+    setJobs(res.data);
+    setLoading(false);
   };
 
-  useEffect(() => {
+  useEffect(()=>{
     handleGetData();
-  }, []);
+  },[])
+
+  
 
   return (
     <div>
@@ -41,42 +37,6 @@ const Home = () => {
         <HomeBanner></HomeBanner>
       </div>
       <Tabs>
-        {/* <TabList>
-          <div className="flex justify-center">
-            <Tab>
-              <button
-                onClick={() => handleGetData("")}
-                className="tab tab-bordered"
-              >
-                All Jobs
-              </button>
-            </Tab>
-            <Tab>
-              <button
-                onClick={() => handleGetData("Web_Design")}
-                className="tab tab-bordered"
-              >
-                Web Design
-              </button>
-            </Tab>
-            <Tab>
-              <button
-                onClick={() => handleGetData("Digital_Marketing")}
-                className="tab tab-bordered"
-              >
-                Digital Marketing
-              </button>
-            </Tab>
-            <Tab>
-              <button
-                onClick={() => handleGetData("Graphics_Design")}
-                className="tab tab-bordered"
-              >
-                Graphic Design
-              </button>
-            </Tab>
-          </div>
-        </TabList> */}
         <div className="flex flex-col sm:flex-row items-center justify-between container mx-auto">
           <div className="text-center my-8">
             <h1 className="lg:text-4xl md:text-2xl text-xl font-bold text-blue-700 mb-4">

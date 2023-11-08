@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Auth/AuthProvider";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
+import useAxios from "../../Hooks/useAxios";
+
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
+  const axios = useAxios();
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [job_title, setJobTitle] = useState("");
@@ -48,7 +50,7 @@ const AddJob = () => {
       user_name,
     };
     axios
-      .post("https://freelance-marketplace-server.vercel.app/jobs", job)
+      .post("/jobs", job)
       .then(function (response) {
         console.log(response.data);
         if (response.data.insertedId) {

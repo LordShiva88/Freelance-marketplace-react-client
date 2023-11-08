@@ -5,34 +5,33 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
-import axios from "axios";
 import toast from "react-hot-toast";
 import Table from "../../Components/Table";
 import PageBanner from "../../Components/SocialLogin/PageBanner/PageBanner";
 import { Link } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const MyBids = () => {
   const [bids, setBids] = useState([]);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch(
-      `https://freelance-marketplace-server.vercel.app/bids?email=${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setBids(data);
-        setLoading(false);
-      });
-  }, [user?.email]);
+    const fetchData = async() =>{
+      const res  = await axios.get(`/bids?email=${user?.email}`);
+      setBids(res.data);
+      setLoading(false);
+    }
+    fetchData()
+  }, [user?.email, axios]);
 
   const handleComplete = (id) => {
     const status = {
       status: "Complete",
     };
     axios
-      .put(`https://freelance-marketplace-server.vercel.app/bids/${id}`, status)
+      .put(`/bids/${id}`, status)
       .then(function (response) {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {
