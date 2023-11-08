@@ -9,6 +9,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "./Firebase";
 import PropTypes from "prop-types";
+import axios from "axios";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -39,14 +40,35 @@ const AuthProvider = ({ children }) => {
 
   // Set User
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      setUser(currentUser);
       setLoading(false);
+
+      // if user exists then
+      if (currentUser) {
+        axios
+          .post("http://localhost:4000/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+      } else {
+        axios
+          .post("http://localhost:4000/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [user]);
 
   if (loading) {
     return;

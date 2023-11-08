@@ -7,6 +7,8 @@ import Jobs from "./Jobs";
 import Success from "../../Components/SocialLogin/Success";
 import Faq from "../../Components/Faq";
 import Testimonials from "../../Components/Testimonials";
+import HomeBanner from "../../Components/Home/HomeBanner";
+import WhyUs from "../../Components/Home/WhyUs";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -15,7 +17,7 @@ const Home = () => {
   const handleGetData = async (category) => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/jobs?category=${category || ""}`
+        `http://localhost:4000/jobs?category=${category || ""}`, {withCredentials: true}
       );
       setJobs(res.data);
       setLoading(false);
@@ -33,7 +35,12 @@ const Home = () => {
       <Helmet>
         <title>Freelance BD || Home</title>
       </Helmet>
-      <h1>this is home</h1>
+      <div>
+
+      <HomeBanner></HomeBanner>
+
+
+      </div>
       <Tabs>
         <TabList>
           <div className="flex justify-center">
@@ -84,10 +91,10 @@ const Home = () => {
           <Jobs jobs={jobs}></Jobs>
         </TabPanel>
       </Tabs>
-
       <div className="flex justify-center my-10">
-        <Success></Success>
+        <WhyUs></WhyUs>
       </div>
+
       <div className="flex justify-center my-10">
         <Faq></Faq>
       </div>

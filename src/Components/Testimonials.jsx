@@ -14,7 +14,6 @@ const Testimonials = () => {
     };
     fetchData();
   }, []);
-  console.log(testimonials);
 
   const settings = {
     dots: true,

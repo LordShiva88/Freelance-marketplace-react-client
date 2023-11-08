@@ -1,7 +1,16 @@
+import { Link } from "react-router-dom";
 
 
 const Faq = () => {
   return (
+  
+  <div
+  className="hero relative"
+  style={{ backgroundImage: `url("https://i.ibb.co/z7fJkQq/2.jpg")` }}
+>
+  <div className="hero-overlay bg-opacity-70"></div>
+  <div className="flex flex-col md:flex-row container mx-auto items-center pt-20">
+    <div className="w-full md:w-1/2 text-center md:text-left md:pr-8 md:mb-0">
     <section className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100">
     <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl font-semibold sm:text-4xl mb-6">Frequently Asked Questions</h2>
@@ -33,6 +42,12 @@ const Faq = () => {
       </div>
     </div>
   </section>
+    </div>
+    <div className="w-full md:w-1/2">
+      <img src={'https://i.ibb.co/wrDPRJG/man-2.png'} alt="" />
+    </div>
+  </div>
+</div>
   );
 };
 
