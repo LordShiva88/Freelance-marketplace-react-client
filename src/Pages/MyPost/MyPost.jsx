@@ -39,7 +39,7 @@ const MyPost = () => {
       </Helmet>
       <div className="relative bg-blue-500 mb-8 overflow-hidden group">
         <PageBanner></PageBanner>
-        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105 p-5">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
             My Posted Jobs
           </h1>

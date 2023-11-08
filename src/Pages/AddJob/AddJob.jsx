@@ -68,17 +68,16 @@ const AddJob = () => {
       </Helmet>
       <div className="relative bg-blue-500 mb-8 overflow-hidden group">
         <PageBanner />
-        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105">
+        <div className="relative z-10 md:p-12 lg:p-16 text-white container mx-auto transform transition-transform duration-300 ease-in-out group-hover:scale-105 p-5">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-2">
-            Welcome to My Bids Page!
+            Welcome to post page!
           </h1>
           <p className="text-lg md:text-xl mb-4">
-            Check your active bids, update statuses, and manage your projects
-            here.
+            Post your job now, Top freelancer waiting for give you!!
           </p>
-          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Request</p>
+          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; Add Job</p>
           <button className="bg-[#eb347a] text-white py-2 px-6 rounded-lg hover:bg-[#ff66a1] transition duration-300 ease-in-out">
-            Explore Bids
+            Explore How it&#39;s work
           </button>
         </div>
       </div>

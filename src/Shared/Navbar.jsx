@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/Image/Logo-name.png";
+import logo from "../assets/Image/Logo.png";
 import { FaBars } from "react-icons/fa";
 import userIcon from "../assets/Image/user.png";
 import { useContext } from "react";
@@ -64,10 +64,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="lg:px-12 md:px-6 navbar bg-base-200 nav">
+    <div className="lg:px-12 md:px-6 navbar bg-base-200 nav p-5">
       <div className="container mx-auto">
-        <div className="hidden md:flex ">
-          <img src={logo} className="h-20" />
+        <div className="hidden md:flex items-center ">
+          <img src={logo} className="w-20"/>
+          <p className="lg:text-2xl text-xl font-semibold text-blue-700">FreelanceBD</p>
         </div>
         <div className="navbar-start">
           <div className="dropdown">

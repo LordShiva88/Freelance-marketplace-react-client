@@ -70,7 +70,7 @@ const MyBids = () => {
             Check your active bids, update statuses, and manage your projects
             here.
           </p>
-          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Request</p>
+          <p className="text-lg md:text-xl mb-8">Home &gt;&gt; My Bids</p>
           <button className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out">
             Explore More
           </button>
