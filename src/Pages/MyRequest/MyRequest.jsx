@@ -18,11 +18,13 @@ const MyRequest = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://freelance-marketplace-server.vercel.app/bids/request?email=${user?.email}`)
+    fetch(
+      `https://freelance-marketplace-server.vercel.app/bids/request?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        setBids(data)
-        setLoading(false)
+        setBids(data);
+        setLoading(false);
       });
   }, [user?.email]);
 
