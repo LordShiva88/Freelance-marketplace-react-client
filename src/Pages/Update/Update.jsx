@@ -31,7 +31,7 @@ const Update = () => {
     console.log(job);
 
     axios
-      .put(`http://localhost:4000/jobs/${id}`, job)
+      .put(`https://freelance-marketplace-server.vercel.app/jobs/${id}`, job)
       .then(function (response) {
         if (response.data.modifiedCount > 0) {
           toast.success("Updated Successful");

@@ -54,7 +54,7 @@ const JobDetails = () => {
     };
 
     axios
-      .post("http://localhost:4000/bids", bids)
+      .post("https://freelance-marketplace-server.vercel.app/bids", bids)
       .then(function (response) {
         if (response.data.insertedId) {
           toast.success("Your Bid Successful!");

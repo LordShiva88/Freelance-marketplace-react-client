@@ -48,7 +48,7 @@ const AddJob = () => {
       user_name,
     };
     axios
-      .post("http://localhost:4000/jobs", job)
+      .post("https://freelance-marketplace-server.vercel.app/jobs", job)
       .then(function (response) {
         console.log(response.data);
         if (response.data.insertedId) {

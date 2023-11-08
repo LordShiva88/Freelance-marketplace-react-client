@@ -9,7 +9,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:4000/testimonials");
+      const response = await axios.get("https://freelance-marketplace-server.vercel.app/testimonials");
       setTestimonials(response.data);
     };
     fetchData();

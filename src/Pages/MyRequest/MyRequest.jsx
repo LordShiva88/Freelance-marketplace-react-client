@@ -15,11 +15,15 @@ const MyRequest = () => {
   const [bids, setBids] = useState([]);
   // const [state, setState] = useState('Pending')
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/bids/request?email=${user?.email}`)
+    fetch(`https://freelance-marketplace-server.vercel.app/bids/request?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setBids(data));
+      .then((data) => {
+        setBids(data)
+        setLoading(false)
+      });
   }, [user?.email]);
 
   const handleAccept = (id) => {
@@ -27,7 +31,7 @@ const MyRequest = () => {
       status: "In Progress",
     };
     axios
-      .put(`http://localhost:4000/bids/${id}`, status)
+      .put(`https://freelance-marketplace-server.vercel.app/bids/${id}`, status)
       .then(function (response) {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {
@@ -48,7 +52,7 @@ const MyRequest = () => {
       status: "Canceled",
     };
     axios
-      .put(`http://localhost:4000/bids/${id}`, status)
+      .put(`https://freelance-marketplace-server.vercel.app/bids/${id}`, status)
       .then(function (response) {
         console.log(response.data);
         if (response.data.modifiedCount > 0) {
@@ -64,6 +68,14 @@ const MyRequest = () => {
         console.log(error);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="rounded-full h-20 w-20 bg-violet-800 animate-ping"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="">

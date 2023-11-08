@@ -24,7 +24,7 @@ const PostDetails = ({ post, posts, setPosts }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:4000/jobs/${id}`);
+        axios.delete(`https://freelance-marketplace-server.vercel.app/jobs/${id}`);
 
         const remaining = posts.filter((post) => post._id !== id);
         setPosts(remaining);

@@ -70,13 +70,13 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/jobs/${params.id}`),
+          fetch(`https://freelance-marketplace-server.vercel.app/jobs/${params.id}`),
       },
       {
         path: "update/:id",
         element: <Update></Update>,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/jobs/${params.id}`),
+          fetch(`https://freelance-marketplace-server.vercel.app/jobs/${params.id}`),
       },
     ],
   },

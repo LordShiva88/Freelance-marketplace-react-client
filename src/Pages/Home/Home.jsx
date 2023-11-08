@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Jobs from "./Jobs";
-import Success from "../../Components/SocialLogin/Success";
 import Faq from "../../Components/Faq";
 import Testimonials from "../../Components/Testimonials";
 import HomeBanner from "../../Components/Home/HomeBanner";
@@ -17,7 +16,8 @@ const Home = () => {
   const handleGetData = async (category) => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/jobs?category=${category || ""}`, {withCredentials: true}
+        `https://freelance-marketplace-server.vercel.app/jobs?category=${category || ""}`,
+        { withCredentials: true }
       );
       setJobs(res.data);
       setLoading(false);
@@ -30,16 +30,15 @@ const Home = () => {
     handleGetData();
   }, []);
 
+ 
+
   return (
     <div>
       <Helmet>
         <title>Freelance BD || Home</title>
       </Helmet>
       <div>
-
-      <HomeBanner></HomeBanner>
-
-
+        <HomeBanner></HomeBanner>
       </div>
       <Tabs>
         <TabList>

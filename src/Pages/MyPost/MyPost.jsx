@@ -11,12 +11,26 @@ import { Link } from "react-router-dom";
 const MyPost = () => {
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/jobs?email=${user?.email}`)
+    fetch(
+      `https://freelance-marketplace-server.vercel.app/jobs?email=${user?.email}`
+    )
       .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((data) => {
+        setPosts(data);
+        setLoading(false);
+      });
   }, [user?.email]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="rounded-full h-20 w-20 bg-violet-800 animate-ping"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="">
