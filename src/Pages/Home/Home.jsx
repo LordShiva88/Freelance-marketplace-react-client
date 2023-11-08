@@ -16,7 +16,9 @@ const Home = () => {
   const handleGetData = async (category) => {
     try {
       const res = await axios.get(
-        `https://freelance-marketplace-server.vercel.app/jobs?category=${category || ""}`,
+        `https://freelance-marketplace-server.vercel.app/jobs?category=${
+          category || ""
+        }`,
         { withCredentials: true }
       );
       setJobs(res.data);
@@ -30,8 +32,6 @@ const Home = () => {
     handleGetData();
   }, []);
 
- 
-
   return (
     <div>
       <Helmet>
@@ -41,7 +41,7 @@ const Home = () => {
         <HomeBanner></HomeBanner>
       </div>
       <Tabs>
-        <TabList>
+        {/* <TabList>
           <div className="flex justify-center">
             <Tab>
               <button
@@ -76,7 +76,89 @@ const Home = () => {
               </button>
             </Tab>
           </div>
-        </TabList>
+        </TabList> */}
+        <div className="flex flex-col sm:flex-row items-center justify-between container mx-auto">
+          <div className="text-center my-8">
+            <h1 className="lg:text-4xl md:text-2xl text-xl font-bold text-blue-700 mb-4">
+              Explore Features Jobs For You
+            </h1>
+            <hr className="border w-32 h-2 bg-blue-700 mx-auto"></hr>
+          </div>
+          <div>
+            <TabList>
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <Tab>
+                  <button
+                    onClick={() => handleGetData("")}
+                    className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
+                  >
+                    All Jobs
+                  </button>
+                </Tab>
+                <Tab>
+                  <button
+                    onClick={() => handleGetData("Web_Design")}
+                    className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
+                  >
+                    Web Design
+                  </button>
+                </Tab>
+                <Tab>
+                  <button
+                    onClick={() => handleGetData("Digital_Marketing")}
+                    className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
+                  >
+                    Digital Marketing
+                  </button>
+                </Tab>
+                <Tab>
+                  <button
+                    onClick={() => handleGetData("Graphics_Design")}
+                    className="bg-white text-blue-500 py-2 px-6 rounded-lg hover:bg-blue-100 transition duration-300 ease-in-out"
+                  >
+                    Graphic Design
+                  </button>
+                </Tab>
+              </div>
+            </TabList>
+          </div>
+        </div>
+        {/* <TabList>
+          <div className="flex justify-center space-x-4">
+            <Tab>
+              <button
+                onClick={() => handleGetData("")}
+                className="tab tab-bordered hover:bg-gray-200 px-4 py-2 rounded-md"
+              >
+                All Jobs
+              </button>
+            </Tab>
+            <Tab>
+              <button
+                onClick={() => handleGetData("Web_Design")}
+                className="tab tab-bordered hover:bg-gray-200 px-4 py-2 rounded-md"
+              >
+                Web Design
+              </button>
+            </Tab>
+            <Tab>
+              <button
+                onClick={() => handleGetData("Digital_Marketing")}
+                className="tab tab-bordered hover:bg-gray-200 px-4 py-2 rounded-md"
+              >
+                Digital Marketing
+              </button>
+            </Tab>
+            <Tab>
+              <button
+                onClick={() => handleGetData("Graphics_Design")}
+                className="tab tab-bordered hover:bg-gray-200 px-4 py-2 rounded-md"
+              >
+                Graphic Design
+              </button>
+            </Tab>
+          </div>
+        </TabList> */}
         <TabPanel>
           <Jobs jobs={jobs} loading={loading}></Jobs>
         </TabPanel>
