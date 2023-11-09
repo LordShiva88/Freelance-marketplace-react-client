@@ -34,6 +34,7 @@ const Update = () => {
     axios
       .put(`/jobs/${id}`, job)
       .then(function (response) {
+        console.log(response)
         if (response.data.modifiedCount > 0) {
           toast.success("Updated Successful");
         }

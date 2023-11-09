@@ -14,7 +14,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+          className="text-black hover:text-blue-500 transition duration-300"
         >
           Home
         </NavLink>
@@ -22,7 +22,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/addJob"
-          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+          className="text-black hover:text-blue-500 transition duration-300"
         >
           Add Job
         </NavLink>
@@ -30,7 +30,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/post"
-          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+          className="text-black hover:text-blue-500 transition duration-300"
         >
           My Posted Job
         </NavLink>
@@ -38,7 +38,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/bids"
-          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+          className="text-black hover:text-blue-500 transition duration-300"
         >
           My Bids
         </NavLink>
@@ -46,7 +46,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/request"
-          className="transition duration-300 ease-in-out hover:text-blue-500 focus:text-blue-500 active:text-blue-500 hover:underline"
+          className="text-black hover:text-blue-500 transition duration-300"
         >
           My Request
         </NavLink>

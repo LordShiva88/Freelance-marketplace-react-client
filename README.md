@@ -19,7 +19,7 @@ FreelanceBD is a full-stack web application designed to create an interactive on
    - Job seekers can place bids on available jobs, specifying their bidding amount and deadline for completion.
   
 4. **Bid Management:**
-   - Users can view and manage their bids, track their status, and interact with employers through the platform.
+   - Users can view and manage their bids request, track their status, and can accept or reject bids.
   
 5. **Responsive Design:**
    - The platform is designed to be responsive, ensuring a seamless user experience across various devices, including desktops, tablets, and mobile phones.
