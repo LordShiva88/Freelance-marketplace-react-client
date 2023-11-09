@@ -19,7 +19,7 @@ const MyBids = () => {
 
   useEffect(() => {
     const fetchData = async() =>{
-      const res  = await axios.get(`/bids?email=${user?.email}`);
+      const res  = await axios.get(`/bids?email=${user?.email}`, {withCredentials: true});
       setBids(res.data);
       setLoading(false);
     }
