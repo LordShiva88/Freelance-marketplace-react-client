@@ -1,5 +1,3 @@
-# Project Name
-
 ## Project Analysis
 
 ### Overview
